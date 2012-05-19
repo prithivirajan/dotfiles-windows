@@ -1,23 +1,16 @@
-# Profile setup for the console host shell
-# Will not be loaded by other hosts (e.g. VS11 Package Manager)
+﻿# Profile setup for the console host shell
 
-# Set the shell background color
+$scripts = split-path $profile
 
+# Find the ssh-agent.exe executable
+# http://haacked.com/archive/2011/12/19/get-git-for-windows.aspx
+$env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
 
-# Helper functions for user/computer session management
-function invoke-userLogout { shutdown /l /t 0 }
-function invoke-systemShutdown { shutdown /s /t 5 }
-function invoke-systemReboot { shutdown /r /t 5 }
-function invoke-systemSleep { RunDll32.exe PowrProf.dll,SetSuspendState }
-function invoke-terminalLock { RunDll32.exe User32.dll,LockWorkStation }
+# Load posh-git example profile
+. $scripts\Modules\posh-git\profile.example.ps1
 
-# Aliases
-set-alias logout invoke-userLogout
-set-alias halt invoke-systemShutdown
-set-alias restart invoke-systemReboot
-if (test-path alias:\sleep) { remove-item alias:\sleep -force }
-set-alias sleep invoke-systemSleep -force
-set-alias lock invoke-terminalLock
-
-# My PowerTab color theme
-import-tabExpansionTheme -LiteralPath $scripts\TabExpansionTheme.csv
+function Set-VS2010 {
+    if (test-path ($scripts + "\vs2010.ps1")) {
+        . $scripts\vs2010.ps1
+    }
+}
