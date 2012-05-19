@@ -1,3 +1,9 @@
+*.bak
+*.o
+*.obj
+*.opensdf
+*.sdf
+*.suo
 *.swp
 tags
 [Tt]humbs.db
