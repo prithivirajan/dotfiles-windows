@@ -1,33 +1,33 @@
 [user]
-	name = Mateusz Loskot
-	email = mateusz@loskot.net
+    name = Mateusz Loskot
+    email = mateusz@loskot.net
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+    diff = auto
+    status = auto
+    branch = auto
 [diff]
-	tool = kdiff3
+    tool = kdiff3
 [merge]
-	tool = kdiff3
+    tool = kdiff3
 [difftool "kdiff3"]
-	path = kdiff3.exe
-	keepBackup = false
-	trustExitCode = false
+    path = kdiff3.exe
+    keepBackup = false
+    trustExitCode = false
 [mergetool "kdiff3"]
-	path = kdiff3.exe
-	keepBackup = false
-	trustExitCode = false
+    path = kdiff3.exe
+    keepBackup = false
+    trustExitCode = false
 [core]
-	editor = gvim.exe
-	autocrlf = true
-	excludesfile = ~/.gitignore
+    editor = gvim.exe
+    autocrlf = true
+    excludesfile = ~/.gitignore
 [alias]
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	type = cat-file -t
-	dump = cat-file -p
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
 [include]
     path = .gitconfig.github
