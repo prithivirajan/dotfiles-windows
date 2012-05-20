@@ -1,6 +1,6 @@
 ﻿# Profile setup for the console host shell
-
-$scripts = split-path $profile
+$dotfiles = resolve-path ~/dotfiles/
+$scripts = join-path $dotfiles "powershell"
 
 # Helper functions for user/computer session management
 function invoke-userLogout { shutdown /l /t 0 }
