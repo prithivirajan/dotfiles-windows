@@ -17,30 +17,38 @@ if (test-path alias:\sleep) { remove-item alias:\sleep -force }
 set-alias sleep invoke-systemSleep -force
 set-alias lock invoke-terminalLock
 
+
+# Utilities
+function Get-ProgramFilesPathX86($childpath)
+{
+    $fullpath = join-path ${env:ProgramFiles(x86)} $childpath
+    if (test-path $fullpath) {
+        return $fullpath
+    }
+    
+    $fullpath = $fullpath -replace "C:\\", "D:\"
+    if (test-path $fullpath) {
+        return $fullpath
+    }
+    return "" # path not found
+}
+
 # Find the ssh-agent.exe executable
 # http://haacked.com/archive/2011/12/19/get-git-for-windows.aspx
-$gitbin = join-path ${env:ProgramFiles(x86)} "\Git\bin"
+$gitbin = Get-ProgramFilesPathX86 "\Git\bin"
 $gitsshagent = join-path $gitbin "ssh-agent.exe"
 if (test-path $gitsshagent)
 {
     $env:path += ";" + $gitbin
-}
-else
-{
-    $gitbin = $gitbin -replace "C:\\", "D:\"
-    $gitsshagent = join-path $gitbin "ssh-agent.exe"
-    if (test-path $gitsshagent)
-    {
-        $env:path += ";" + $gitbin
-    }
 }
 
 # Load posh-git example profile
 . $scripts\Modules\posh-git\profile.example.ps1
 
 # Sets Visual Studio 2010 environment
-function Set-VS2010(){
-	$vcvars = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
+function Set-VS2010()
+{
+	$vcvars = Get-ProgramFilesPathX86 "Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
     if (Test-Path $vcvars)
     {
         Invoke-BatchFile $vcvars
