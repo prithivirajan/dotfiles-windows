@@ -24,8 +24,12 @@ $env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
 # Load posh-git example profile
 . $scripts\Modules\posh-git\profile.example.ps1
 
-function Set-VS2010 {
-    if (test-path ($scripts + "\vs2010.ps1")) {
-        . $scripts\vs2010.ps1
+# Sets Visual Studio 2010 environment
+function Set-VS2010(){
+	$vcvars = "${env:ProgramFiles(x86)}\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
+    if (Test-Path $vcvars)
+    {
+        Invoke-BatchFile $vcvars
+    	[System.Console]::Title = "Visual Studio 2010 Windows PowerShell"
     }
 }
