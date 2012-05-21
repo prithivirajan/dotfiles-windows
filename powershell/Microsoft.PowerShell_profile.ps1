@@ -19,7 +19,21 @@ set-alias lock invoke-terminalLock
 
 # Find the ssh-agent.exe executable
 # http://haacked.com/archive/2011/12/19/get-git-for-windows.aspx
-$env:path += ";" + (Get-Item "Env:ProgramFiles(x86)").Value + "\Git\bin"
+$gitbin = join-path ${env:ProgramFiles(x86)} "\Git\bin"
+$gitsshagent = join-path $gitbin "ssh-agent.exe"
+if (test-path $gitsshagent)
+{
+    $env:path += ";" + $gitbin
+}
+else
+{
+    $gitbin = $gitbin -replace "C:\\", "D:\"
+    $gitsshagent = join-path $gitbin "ssh-agent.exe"
+    if (test-path $gitsshagent)
+    {
+        $env:path += ";" + $gitbin
+    }
+}
 
 # Load posh-git example profile
 . $scripts\Modules\posh-git\profile.example.ps1
@@ -33,3 +47,7 @@ function Set-VS2010(){
     	[System.Console]::Title = "Visual Studio 2010 Windows PowerShell"
     }
 }
+
+# Load posh-git example profile
+. 'C:\Users\mateuszl\dotfiles\powershell\modules\posh-git\profile.example.ps1'
+
