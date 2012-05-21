@@ -57,5 +57,5 @@ function Set-VS2010()
 }
 
 # Load posh-git example profile
-. 'C:\Users\mateuszl\dotfiles\powershell\modules\posh-git\profile.example.ps1'
-
+$poshgit = join-path $scripts "\modules\posh-git\profile.example.ps1"
+. $poshgit
