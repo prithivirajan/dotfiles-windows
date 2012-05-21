@@ -5,6 +5,10 @@
 *.sdf
 *.suo
 *.swp
+mloskot-*.sln
+mloskot-*.vcxproj
+mloskot-*.vcxproj.filters
+mloskot-*.vcxproj.user
 tags
 [Tt]humbs.db
 .vim/info/
