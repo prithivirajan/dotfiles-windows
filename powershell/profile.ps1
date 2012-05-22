@@ -23,10 +23,7 @@ $env:PSModulePath = join-path $scripts modules
 
 # Load in support modules
 Import-Module "Pscx" -Arg (join-path $scripts Pscx.UserPreferences.ps1)
-Import-Module "PowerTab" -ArgumentList (join-path $scripts PowerTabConfig.xml)
 Import-Module "Posh-Git"
-Import-Module "Posh-Hg"
-Import-Module "Posh-Svn"
 
 # Install my custom types and formatters
 # Update-TypeData -PrependPath $scripts\MyTypes.ps1xml
@@ -103,7 +100,8 @@ function prompt {
 }
 
 # UNIX friendly environment variables
-$env:EDITOR = "gvim"
+#$env:EDITOR = "gvim"
+$env:EDITOR = (Get-Item "Env:ProgramFiles(x86)").Value + "\Notepad++\notepad++.exe -multiInst -nosession"
 $env:VISUAL = $env:EDITOR
 $env:GIT_EDITOR = $env:EDITOR
 $env:TERM = "msys"
@@ -113,3 +111,4 @@ $env:TERM = "msys"
 
 # Path tweaks
 add-pathVariable $scripts
+    
