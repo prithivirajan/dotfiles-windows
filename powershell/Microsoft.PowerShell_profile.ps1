@@ -43,7 +43,7 @@ if (test-path $gitsshagent)
 }
 
 # Load posh-git example profile
-. $scripts\Modules\posh-git\profile.example.ps1
+. $scripts\posh-git_profile.ps1
 
 # Sets Visual Studio 2010 environment
 function Set-VS2010()
