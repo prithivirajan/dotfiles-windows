@@ -2,6 +2,9 @@
 $dotfiles = resolve-path ~/dotfiles/
 $scripts = join-path $dotfiles "powershell"
 
+# Utilities
+. (join-path $scripts "Get-ProgramFiles.ps1")
+
 # Helper functions for user/computer session management
 function invoke-userLogout { shutdown /l /t 0 }
 function invoke-systemShutdown { shutdown /s /t 5 }
@@ -16,22 +19,6 @@ set-alias restart invoke-systemReboot
 if (test-path alias:\sleep) { remove-item alias:\sleep -force }
 set-alias sleep invoke-systemSleep -force
 set-alias lock invoke-terminalLock
-
-
-# Utilities
-function Get-ProgramFilesPathX86($childpath)
-{
-    $fullpath = join-path ${env:ProgramFiles(x86)} $childpath
-    if (test-path $fullpath) {
-        return $fullpath
-    }
-    
-    $fullpath = $fullpath -replace "C:\\", "D:\"
-    if (test-path $fullpath) {
-        return $fullpath
-    }
-    return "" # path not found
-}
 
 # Find the ssh-agent.exe executable
 # http://haacked.com/archive/2011/12/19/get-git-for-windows.aspx
