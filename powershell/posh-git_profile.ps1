@@ -28,6 +28,7 @@ Enable-GitColors
 Pop-Location
 
 # Find and launch pageant.exe, load secret key
+# See: http://www.federicosilva.net/2012/03/how-to-remember-your-ssh-passphrase.html
 $ppk = join-path ${env:UserProfile} ".ssh\mloskot@dog.putty.ppk"
 if (test-path $ppk)
 {
