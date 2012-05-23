@@ -29,8 +29,10 @@ if (test-path $gitsshagent)
     $env:path += ";" + $gitbin
 }
 
-# Load posh-git example profile
+# Load posh-git profile
 . $scripts\posh-git_profile.ps1
+# Load posh-svn profile
+. $scripts\posh-svn_profile.ps1
 
 # Sets Visual Studio 2010 environment
 function Set-VS2010()
