@@ -42,7 +42,3 @@ function Set-VS2010()
     	[System.Console]::Title = "Visual Studio 2010 Windows PowerShell"
     }
 }
-
-# Load posh-git example profile
-$poshgit = join-path $scripts "\modules\posh-git\profile.example.ps1"
-. $poshgit
