@@ -41,3 +41,6 @@
 [submodule ".vim/bundle/vimple"]
 	path = .vim/bundle/vimple
 	url = git://github.com/dahu/vimple.git
+[submodule ".\\powershell\\modules\\posh-svn"]
+	path = .\\powershell\\modules\\posh-svn
+	url = git://github.com/JeremySkinner/posh-svn.git
